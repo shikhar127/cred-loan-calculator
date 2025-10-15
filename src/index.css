@@ -37,6 +37,14 @@ body {
   overscroll-behavior-y: none;
   /* Better touch scrolling */
   -webkit-overflow-scrolling: touch;
+  /* Ensure content is visible */
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 /* Desktop layout */
