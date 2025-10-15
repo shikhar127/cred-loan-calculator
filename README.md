@@ -106,3 +106,4 @@ MIT
 ---
 
 Built with React + TailwindCSS + Recharts
+
