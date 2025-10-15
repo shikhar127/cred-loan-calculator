@@ -1,31 +1,20 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { PieChart, Pie, Cell, LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 import { toPng } from 'html-to-image'
 import { Download, Share, ChevronDown } from './Icons'
-import { useDebouncedValue } from '../hooks/useDebouncedValue'
-import { useLocalStorage } from '../hooks/useLocalStorage'
 
 const LoanCalculator = () => {
-  const [loanAmount, setLoanAmount] = useLocalStorage('loanAmount', 500000)
-  const [tenure, setTenure] = useLocalStorage('tenure', 24)
-  const [tenureType, setTenureType] = useLocalStorage('tenureType', 'months')
-  const [roi, setRoi] = useLocalStorage('roi', 10)
+  const [loanAmount, setLoanAmount] = useState(500000)
+  const [tenure, setTenure] = useState(12)
+  const [tenureType, setTenureType] = useState('months')
+  const [roi, setRoi] = useState(10)
   const [processingFee, setProcessingFee] = useState(1000)
   const [feeType, setFeeType] = useState('flat')
   const [loanType, setLoanType] = useState('Personal')
   const [showDetails, setShowDetails] = useState(false)
+  const [calculated, setCalculated] = useState(false)
   const [results, setResults] = useState(null)
   const exportRef = useRef(null)
-
-  // Debounced values for real-time calculation
-  const debouncedLoanAmount = useDebouncedValue(loanAmount, 300)
-  const debouncedTenure = useDebouncedValue(tenure, 300)
-  const debouncedRoi = useDebouncedValue(roi, 300)
-
-  // Auto-calculate on load and when values change
-  useEffect(() => {
-    calculateEMI()
-  }, [debouncedLoanAmount, debouncedTenure, tenureType, debouncedRoi, processingFee, feeType])
 
   const calculateEMI = () => {
     const P = loanAmount
@@ -76,6 +65,7 @@ const LoanCalculator = () => {
       chartData,
       principal: P,
     })
+    setCalculated(true)
 
     // Console test cases
     console.log('EMI Calculation Test:')
@@ -120,6 +110,7 @@ const LoanCalculator = () => {
             title: 'EMI Repayment Schedule',
           })
         } else {
+          // Fallback: download
           exportAsImage()
         }
       } catch (err) {
@@ -128,68 +119,20 @@ const LoanCalculator = () => {
     }
   }
 
-  // Quick preset amounts
-  const presets = [
-    { label: '₹5L', value: 500000 },
-    { label: '₹10L', value: 1000000 },
-    { label: '₹20L', value: 2000000 },
-    { label: '₹50L', value: 5000000 },
-  ]
-
   return (
-    <div className="px-5 py-6 pb-24 space-y-6">
-      {/* Hero EMI Display - Show immediately */}
-      {results && (
-        <div className="bg-gradient-to-br from-cred-accent/20 to-cred-accent-light/10 p-6 rounded-3xl border-2 border-cred-accent/30 shadow-lg">
-          <p className="text-gray-400 text-xs uppercase tracking-wide mb-2">Your Monthly EMI</p>
-          <p className="text-white text-5xl font-extrabold leading-tight">{formatCurrency(results.emi)}</p>
-          <p className="text-gray-400 text-sm mt-1">per month</p>
-          <div className="mt-4 pt-4 border-t border-cred-accent/20 grid grid-cols-2 gap-4">
-            <div>
-              <p className="text-gray-400 text-xs">Total Payable</p>
-              <p className="text-white text-lg font-bold">{formatCurrency(results.totalAmount)}</p>
-            </div>
-            <div>
-              <p className="text-gray-400 text-xs">Interest</p>
-              <p className="text-cred-accent-light text-lg font-bold">{formatCurrency(results.totalInterest)}</p>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Quick Presets */}
-      <div>
-        <p className="text-gray-400 text-xs uppercase tracking-wide mb-3">Quick Select</p>
-        <div className="grid grid-cols-4 gap-2">
-          {presets.map((preset) => (
-            <button
-              key={preset.value}
-              onClick={() => setLoanAmount(preset.value)}
-              className={`py-3 px-2 rounded-xl font-semibold text-sm transition-all active:scale-95 ${
-                loanAmount === preset.value
-                  ? 'bg-cred-accent text-black'
-                  : 'bg-cred-darker/70 text-gray-400 hover:bg-cred-darker'
-              }`}
-            >
-              {preset.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
+    <div className="p-6 pb-20 space-y-6">
       {/* Input Fields */}
       <div className="space-y-5">
         {/* Loan Amount */}
-        <div className="bg-cred-darker/50 backdrop-blur-sm p-5 rounded-2xl border border-gray-800">
+        <div className="bg-cred-darker/50 backdrop-blur-sm p-4 rounded-2xl border border-gray-800">
           <label className="text-gray-400 text-xs uppercase tracking-wide">Loan Amount</label>
-          <div className="flex items-center gap-3 mt-3">
-            <span className="text-cred-accent text-lg font-bold">₹</span>
+          <div className="flex items-center gap-3 mt-2">
+            <span className="text-cred-accent text-sm">₹</span>
             <input
               type="number"
               value={loanAmount}
               onChange={(e) => setLoanAmount(Number(e.target.value))}
-              inputMode="numeric"
-              className="bg-transparent text-white text-3xl font-bold outline-none w-full"
+              className="bg-transparent text-white text-2xl font-bold outline-none w-full"
             />
           </div>
           <input
@@ -199,29 +142,24 @@ const LoanCalculator = () => {
             step="10000"
             value={loanAmount}
             onChange={(e) => setLoanAmount(Number(e.target.value))}
-            className="w-full mt-4"
+            className="w-full mt-3"
           />
-          <div className="flex justify-between text-xs text-gray-500 mt-2">
-            <span>₹10K</span>
-            <span>₹1Cr</span>
-          </div>
         </div>
 
         {/* Tenure */}
-        <div className="bg-cred-darker/50 backdrop-blur-sm p-5 rounded-2xl border border-gray-800">
+        <div className="bg-cred-darker/50 backdrop-blur-sm p-4 rounded-2xl border border-gray-800">
           <label className="text-gray-400 text-xs uppercase tracking-wide">Tenure</label>
-          <div className="flex items-center gap-3 mt-3">
+          <div className="flex items-center gap-3 mt-2">
             <input
               type="number"
               value={tenure}
               onChange={(e) => setTenure(Number(e.target.value))}
-              inputMode="numeric"
-              className="bg-transparent text-white text-3xl font-bold outline-none w-24"
+              className="bg-transparent text-white text-2xl font-bold outline-none w-20"
             />
             <select
               value={tenureType}
               onChange={(e) => setTenureType(e.target.value)}
-              className="bg-cred-darker text-cred-accent px-4 py-2 rounded-xl outline-none text-sm font-semibold"
+              className="bg-cred-darker text-cred-accent px-3 py-1 rounded-lg outline-none text-sm"
             >
               <option value="months">Months</option>
               <option value="years">Years</option>
@@ -233,43 +171,115 @@ const LoanCalculator = () => {
             max={tenureType === 'years' ? 30 : 360}
             value={tenure}
             onChange={(e) => setTenure(Number(e.target.value))}
-            className="w-full mt-4"
+            className="w-full mt-3"
           />
         </div>
 
         {/* ROI */}
-        <div className="bg-cred-darker/50 backdrop-blur-sm p-5 rounded-2xl border border-gray-800">
+        <div className="bg-cred-darker/50 backdrop-blur-sm p-4 rounded-2xl border border-gray-800">
           <label className="text-gray-400 text-xs uppercase tracking-wide">Interest Rate (p.a.)</label>
-          <div className="flex items-center gap-3 mt-3">
+          <div className="flex items-center gap-3 mt-2">
             <input
               type="number"
               step="0.1"
               value={roi}
               onChange={(e) => setRoi(Number(e.target.value))}
-              inputMode="decimal"
-              className="bg-transparent text-white text-3xl font-bold outline-none w-24"
+              className="bg-transparent text-white text-2xl font-bold outline-none w-20"
             />
-            <span className="text-cred-accent text-2xl font-bold">%</span>
+            <span className="text-cred-accent text-xl">%</span>
           </div>
-          <input
-            type="range"
-            min="0"
-            max="30"
-            step="0.5"
-            value={roi}
-            onChange={(e) => setRoi(Number(e.target.value))}
-            className="w-full mt-4"
-          />
+        </div>
+
+        {/* Processing Fee */}
+        <div className="bg-cred-darker/50 backdrop-blur-sm p-4 rounded-2xl border border-gray-800">
+          <label className="text-gray-400 text-xs uppercase tracking-wide">Processing Fee</label>
+          <div className="flex items-center gap-3 mt-2">
+            <span className="text-cred-accent text-sm">{feeType === 'flat' ? '₹' : '%'}</span>
+            <input
+              type="number"
+              value={processingFee}
+              onChange={(e) => setProcessingFee(Number(e.target.value))}
+              className="bg-transparent text-white text-2xl font-bold outline-none w-full"
+            />
+          </div>
+          <div className="flex gap-2 mt-3">
+            <button
+              onClick={() => setFeeType('flat')}
+              className={`px-3 py-1 rounded-lg text-xs transition ${
+                feeType === 'flat' ? 'bg-cred-accent text-black' : 'bg-cred-darker text-gray-400'
+              }`}
+            >
+              Flat Fee (₹)
+            </button>
+            <button
+              onClick={() => setFeeType('percent')}
+              className={`px-3 py-1 rounded-lg text-xs transition ${
+                feeType === 'percent' ? 'bg-cred-accent text-black' : 'bg-cred-darker text-gray-400'
+              }`}
+            >
+              % of Loan
+            </button>
+          </div>
+        </div>
+
+        {/* Loan Type */}
+        <div className="bg-cred-darker/50 backdrop-blur-sm p-4 rounded-2xl border border-gray-800">
+          <label className="text-gray-400 text-xs uppercase tracking-wide">Loan Type</label>
+          <div className="relative mt-2">
+            <select
+              value={loanType}
+              onChange={(e) => setLoanType(e.target.value)}
+              className="bg-cred-darker text-white w-full px-4 py-3 rounded-xl outline-none appearance-none font-medium"
+            >
+              <option>Personal</option>
+              <option>Home</option>
+              <option>Car</option>
+              <option>Other</option>
+            </select>
+            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none" />
+          </div>
         </div>
       </div>
 
-      {/* Charts */}
-      {results && (
-        <div ref={exportRef} className="space-y-5 bg-cred-dark rounded-2xl">
+      {/* Calculate Button */}
+      <button
+        onClick={calculateEMI}
+        className="w-full bg-gradient-to-r from-cred-accent to-cred-accent-light text-black font-bold py-4 rounded-2xl shadow-lg shadow-cred-accent/20 hover:shadow-cred-accent/40 transition-all duration-300"
+      >
+        Calculate EMI
+      </button>
+
+      {/* Results */}
+      {calculated && results && (
+        <div ref={exportRef} className="space-y-6 bg-cred-dark p-4 rounded-2xl">
+          {/* Hero EMI Card */}
+          <div className="bg-gradient-to-br from-cred-accent/20 to-cred-accent-light/10 p-6 rounded-2xl border border-cred-accent/30">
+            <p className="text-gray-400 text-xs uppercase tracking-wide mb-2">Your Monthly EMI</p>
+            <p className="text-white text-4xl font-extrabold">{formatCurrency(results.emi)}</p>
+            <p className="text-gray-400 text-sm mt-1">/ month</p>
+          </div>
+
+          {/* Summary Cards */}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-cred-darker/70 p-4 rounded-xl">
+              <p className="text-gray-400 text-xs uppercase">Total Payable</p>
+              <p className="text-white text-lg font-bold mt-1">{formatCurrency(results.totalAmount)}</p>
+            </div>
+            <div className="bg-cred-darker/70 p-4 rounded-xl">
+              <p className="text-gray-400 text-xs uppercase">Extra You'll Pay</p>
+              <p className="text-cred-accent-light text-lg font-bold mt-1">{formatCurrency(results.totalInterest)}</p>
+            </div>
+          </div>
+
+          <div className="bg-cred-darker/70 p-4 rounded-xl">
+            <p className="text-gray-400 text-xs uppercase">One-time Processing Fee</p>
+            <p className="text-white text-lg font-bold mt-1">{formatCurrency(results.processingFee)}</p>
+          </div>
+
           {/* Pie Chart */}
-          <div className="bg-cred-darker/50 p-5 rounded-2xl border border-gray-800">
+          <div className="bg-cred-darker/50 p-4 rounded-2xl">
             <h3 className="text-white text-sm font-semibold mb-4 uppercase tracking-wide">Payment Breakdown</h3>
-            <ResponsiveContainer width="100%" height={220}>
+            <ResponsiveContainer width="100%" height={200}>
               <PieChart>
                 <Pie
                   data={[
@@ -278,8 +288,8 @@ const LoanCalculator = () => {
                   ]}
                   cx="50%"
                   cy="50%"
-                  innerRadius={70}
-                  outerRadius={90}
+                  innerRadius={60}
+                  outerRadius={80}
                   dataKey="value"
                   label={({ percent }) => `${(percent * 100).toFixed(1)}%`}
                 >
@@ -306,7 +316,7 @@ const LoanCalculator = () => {
 
           {/* Line Chart */}
           {results.chartData.length > 0 && (
-            <div className="bg-cred-darker/50 p-5 rounded-2xl border border-gray-800">
+            <div className="bg-cred-darker/50 p-4 rounded-2xl">
               <h3 className="text-white text-sm font-semibold mb-4 uppercase tracking-wide">
                 Principal vs Interest Trend
               </h3>
@@ -326,39 +336,39 @@ const LoanCalculator = () => {
           )}
 
           {/* Action Buttons */}
-          <div className="flex gap-3 px-2">
+          <div className="flex gap-3">
             <button
               onClick={() => setShowDetails(!showDetails)}
-              className="flex-1 bg-cred-darker border-2 border-cred-accent/30 text-cred-accent py-4 rounded-2xl font-bold hover:bg-cred-accent/10 transition active:scale-95"
+              className="flex-1 bg-cred-darker border border-cred-accent/30 text-cred-accent py-3 rounded-xl font-semibold hover:bg-cred-accent/10 transition"
             >
-              {showDetails ? 'Hide' : 'View'} Schedule
+              {showDetails ? 'Hide' : 'View'} Details
             </button>
             <button
               onClick={exportAsImage}
-              className="bg-cred-darker border-2 border-cred-accent/30 text-cred-accent p-4 rounded-2xl hover:bg-cred-accent/10 transition active:scale-95"
+              className="bg-cred-darker border border-cred-accent/30 text-cred-accent p-3 rounded-xl hover:bg-cred-accent/10 transition"
             >
-              <Download className="w-6 h-6" />
+              <Download className="w-5 h-5" />
             </button>
             <button
               onClick={shareAsImage}
-              className="bg-cred-darker border-2 border-cred-accent/30 text-cred-accent p-4 rounded-2xl hover:bg-cred-accent/10 transition active:scale-95"
+              className="bg-cred-darker border border-cred-accent/30 text-cred-accent p-3 rounded-xl hover:bg-cred-accent/10 transition"
             >
-              <Share className="w-6 h-6" />
+              <Share className="w-5 h-5" />
             </button>
           </div>
 
           {/* Repayment Schedule */}
           {showDetails && (
-            <div className="bg-cred-darker/50 p-5 rounded-2xl border border-gray-800 max-h-96 overflow-y-auto">
+            <div className="bg-cred-darker/50 p-4 rounded-2xl max-h-96 overflow-y-auto">
               <h3 className="text-white text-sm font-semibold mb-4 uppercase tracking-wide sticky top-0 bg-cred-darker/90 pb-2">
                 Month-wise Schedule
               </h3>
               <div className="space-y-2">
                 {results.schedule.map((item) => (
-                  <div key={item.month} className="bg-cred-dark p-4 rounded-xl text-xs">
+                  <div key={item.month} className="bg-cred-dark p-3 rounded-lg text-xs">
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-cred-accent font-bold">Month {item.month}</span>
-                      <span className="text-white font-bold text-sm">{formatCurrency(item.emi)}</span>
+                      <span className="text-white font-bold">{formatCurrency(item.emi)}</span>
                     </div>
                     <div className="grid grid-cols-3 gap-2 text-gray-400">
                       <div>
