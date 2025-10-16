@@ -93,6 +93,10 @@ const LoanCalculator = () => {
     }).format(amount)
   }
 
+  const formatNumber = (num) => {
+    return new Intl.NumberFormat('en-IN').format(num)
+  }
+
   const exportAsImage = async () => {
     if (exportRef.current) {
       try {
@@ -159,16 +163,16 @@ const LoanCalculator = () => {
 
       {/* Quick Presets */}
       <div>
-        <p className="text-gray-400 text-xs uppercase tracking-wide mb-3">Quick Select</p>
-        <div className="grid grid-cols-4 gap-2">
+        <p className="text-gray-400 text-sm font-medium uppercase tracking-wide mb-3">Quick Select Loan Amount</p>
+        <div className="grid grid-cols-4 gap-3">
           {presets.map((preset) => (
             <button
               key={preset.value}
               onClick={() => setLoanAmount(preset.value)}
-              className={`py-3 px-2 rounded-xl font-semibold text-sm transition-all active:scale-95 ${
+              className={`py-4 px-2 rounded-xl font-bold text-base transition-all duration-200 ${
                 loanAmount === preset.value
-                  ? 'bg-cred-accent text-black'
-                  : 'bg-cred-darker/70 text-gray-400 hover:bg-cred-darker'
+                  ? 'bg-gradient-to-br from-cred-accent to-cred-accent-light text-black shadow-lg shadow-cred-accent/30 scale-105'
+                  : 'bg-cred-darker/70 text-gray-400 hover:bg-cred-darker hover:text-white border-2 border-gray-800 active:scale-95'
               }`}
             >
               {preset.label}
@@ -180,18 +184,15 @@ const LoanCalculator = () => {
       {/* Input Fields */}
       <div className="space-y-5">
         {/* Loan Amount */}
-        <div className="bg-cred-darker/50 backdrop-blur-sm p-5 rounded-2xl border border-gray-800">
-          <label className="text-gray-400 text-xs uppercase tracking-wide">Loan Amount</label>
-          <div className="flex items-center gap-3 mt-3">
-            <span className="text-cred-accent text-lg font-bold">₹</span>
-            <input
-              type="number"
-              value={loanAmount}
-              onChange={(e) => setLoanAmount(Number(e.target.value))}
-              inputMode="numeric"
-              className="bg-transparent text-white text-3xl font-bold outline-none w-full"
-            />
+        <div className="bg-cred-darker/50 backdrop-blur-sm p-5 rounded-2xl border-2 border-gray-800">
+          <label className="text-gray-400 text-sm font-medium uppercase tracking-wide">Loan Amount</label>
+          <div className="flex items-baseline gap-2 mt-3 mb-1">
+            <span className="text-cred-accent text-2xl font-bold">₹</span>
+            <div className="text-white text-4xl font-bold tracking-tight">
+              {formatNumber(loanAmount)}
+            </div>
           </div>
+          <div className="text-gray-500 text-xs mb-4">Slide to adjust or tap the amount above to edit</div>
           <input
             type="range"
             min="10000"
@@ -199,58 +200,55 @@ const LoanCalculator = () => {
             step="10000"
             value={loanAmount}
             onChange={(e) => setLoanAmount(Number(e.target.value))}
-            className="w-full mt-4"
+            className="w-full mt-2"
           />
-          <div className="flex justify-between text-xs text-gray-500 mt-2">
+          <div className="flex justify-between text-sm font-semibold text-gray-400 mt-3">
             <span>₹10K</span>
-            <span>₹1Cr</span>
+            <span>₹10Cr (Max)</span>
           </div>
         </div>
 
         {/* Tenure */}
-        <div className="bg-cred-darker/50 backdrop-blur-sm p-5 rounded-2xl border border-gray-800">
-          <label className="text-gray-400 text-xs uppercase tracking-wide">Tenure</label>
-          <div className="flex items-center gap-3 mt-3">
-            <input
-              type="number"
-              value={tenure}
-              onChange={(e) => setTenure(Number(e.target.value))}
-              inputMode="numeric"
-              className="bg-transparent text-white text-3xl font-bold outline-none w-24"
-            />
+        <div className="bg-cred-darker/50 backdrop-blur-sm p-5 rounded-2xl border-2 border-gray-800">
+          <label className="text-gray-400 text-sm font-medium uppercase tracking-wide">Tenure</label>
+          <div className="flex items-center gap-3 mt-3 mb-1">
+            <div className="text-white text-4xl font-bold tracking-tight">
+              {tenure}
+            </div>
             <select
               value={tenureType}
               onChange={(e) => setTenureType(e.target.value)}
-              className="bg-cred-darker text-cred-accent px-4 py-2 rounded-xl outline-none text-sm font-semibold"
+              className="bg-cred-darker text-cred-accent px-4 py-2 rounded-xl outline-none text-lg font-semibold border-2 border-cred-accent/20"
             >
               <option value="months">Months</option>
               <option value="years">Years</option>
             </select>
           </div>
+          <div className="text-gray-500 text-xs mb-4">Slide to adjust repayment period</div>
           <input
             type="range"
             min="1"
             max={tenureType === 'years' ? 30 : 360}
             value={tenure}
             onChange={(e) => setTenure(Number(e.target.value))}
-            className="w-full mt-4"
+            className="w-full mt-2"
           />
+          <div className="flex justify-between text-sm font-semibold text-gray-400 mt-3">
+            <span>1 {tenureType === 'years' ? 'Year' : 'Month'}</span>
+            <span>{tenureType === 'years' ? '30 Years' : '360 Months'} (Max)</span>
+          </div>
         </div>
 
         {/* ROI */}
-        <div className="bg-cred-darker/50 backdrop-blur-sm p-5 rounded-2xl border border-gray-800">
-          <label className="text-gray-400 text-xs uppercase tracking-wide">Interest Rate (p.a.)</label>
-          <div className="flex items-center gap-3 mt-3">
-            <input
-              type="number"
-              step="0.1"
-              value={roi}
-              onChange={(e) => setRoi(Number(e.target.value))}
-              inputMode="decimal"
-              className="bg-transparent text-white text-3xl font-bold outline-none w-24"
-            />
-            <span className="text-cred-accent text-2xl font-bold">%</span>
+        <div className="bg-cred-darker/50 backdrop-blur-sm p-5 rounded-2xl border-2 border-gray-800">
+          <label className="text-gray-400 text-sm font-medium uppercase tracking-wide">Interest Rate (p.a.)</label>
+          <div className="flex items-baseline gap-2 mt-3 mb-1">
+            <div className="text-white text-4xl font-bold tracking-tight">
+              {roi}
+            </div>
+            <span className="text-cred-accent text-3xl font-bold">%</span>
           </div>
+          <div className="text-gray-500 text-xs mb-4">Slide to adjust annual interest rate</div>
           <input
             type="range"
             min="0"
@@ -258,8 +256,12 @@ const LoanCalculator = () => {
             step="0.5"
             value={roi}
             onChange={(e) => setRoi(Number(e.target.value))}
-            className="w-full mt-4"
+            className="w-full mt-2"
           />
+          <div className="flex justify-between text-sm font-semibold text-gray-400 mt-3">
+            <span>0% (Min)</span>
+            <span>30% (Max)</span>
+          </div>
         </div>
       </div>
 
