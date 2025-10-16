@@ -52,29 +52,29 @@ function App() {
             <ActiveComponent />
           </div>
 
-          {/* Tab Bar */}
-          <div className="absolute bottom-0 w-full bg-cred-darker border-t border-gray-800 px-4 py-3 flex justify-around items-center">
-            {tabs.map((tab, index) => {
-              const Icon = tab.icon
-              const isActive = activeTab === index
-              return (
-                <button
-                  key={index}
-                  onClick={() => setActiveTab(index)}
-                  className={`flex flex-col items-center gap-1 px-4 py-2 rounded-xl transition-all duration-300 ${
-                    isActive ? 'bg-cred-accent/10' : ''
-                  }`}
-                >
-                  <Icon className={`w-6 h-6 ${isActive ? 'text-cred-accent' : 'text-gray-500'}`} />
-                  <span className={`text-xs font-medium ${isActive ? 'text-cred-accent' : 'text-gray-500'}`}>
-                    {tab.name}
-                  </span>
-                  {isActive && (
-                    <div className="absolute -top-0.5 w-8 h-1 bg-cred-accent rounded-b-full"></div>
-                  )}
-                </button>
-              )
-            })}
+          {/* Tab Bar - Desktop Frame Version */}
+          <div className="absolute bottom-0 w-full bg-cred-darker border-t border-gray-800">
+            <div className="flex items-center justify-evenly px-4 h-14">
+              {tabs.map((tab, index) => {
+                const Icon = tab.icon
+                const isActive = activeTab === index
+                return (
+                  <button
+                    key={index}
+                    onClick={() => setActiveTab(index)}
+                    className="relative flex flex-col items-center justify-center gap-1 w-16 h-14 transition-all duration-200 active:scale-95"
+                  >
+                    {isActive && (
+                      <div className="absolute -top-[1px] left-1/2 -translate-x-1/2 w-16 h-1 bg-cred-accent rounded-b-full"></div>
+                    )}
+                    <Icon className={`w-6 h-6 transition-colors ${isActive ? 'text-cred-accent' : 'text-gray-500'}`} />
+                    <span className={`text-[11px] font-medium transition-colors ${isActive ? 'text-cred-accent' : 'text-gray-500'}`}>
+                      {tab.name}
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -85,40 +85,59 @@ function App() {
   // This is the default layout that works on all devices
   return (
     <div className="min-h-screen bg-cred-dark flex flex-col">
-      {/* App Bar */}
-      <div className="bg-gradient-to-b from-cred-darker to-cred-dark px-6 pt-safe pb-4 border-b border-gray-800 sticky top-0 z-50">
-        <h1 className="text-white text-2xl font-bold mt-2">{tabs[activeTab].name}</h1>
+      {/* App Bar - Universal Design: 56px min height with proper safe area */}
+      <div className="bg-cred-darker/95 backdrop-blur-lg border-b border-gray-800 sticky top-0 z-50">
+        {/* Safe area spacer - invisible but reserves space for status bar */}
+        <div className="h-[env(safe-area-inset-top,0px)]"></div>
+
+        {/* Actual header content - 56px minimum height (Universal Design standard) */}
+        <div className="px-6 py-4 min-h-[56px] flex items-center">
+          <h1 className="text-white text-2xl font-bold">{tabs[activeTab].name}</h1>
+        </div>
       </div>
 
       {/* Content Area - Native Scrolling */}
-      <div className="flex-1 overflow-y-auto bg-cred-dark pb-20">
-        <ActiveComponent />
+      <div className="flex-1 overflow-y-auto bg-cred-dark">
+        <div className="pb-20">
+          <ActiveComponent />
+        </div>
       </div>
 
-      {/* Tab Bar - Fixed at bottom with safe area */}
-      <div className="fixed bottom-0 left-0 right-0 bg-cred-darker/95 backdrop-blur-lg border-t border-gray-800 px-4 py-safe pb-safe safe-area-inset-bottom">
-        <div className="flex justify-around items-center py-2">
-          {tabs.map((tab, index) => {
-            const Icon = tab.icon
-            const isActive = activeTab === index
-            return (
-              <button
-                key={index}
-                onClick={() => setActiveTab(index)}
-                className={`flex flex-col items-center gap-1.5 px-6 py-3 rounded-2xl transition-all duration-300 active:scale-95 ${
-                  isActive ? 'bg-cred-accent/10' : ''
-                }`}
-              >
-                <Icon className={`w-7 h-7 ${isActive ? 'text-cred-accent' : 'text-gray-500'}`} />
-                <span className={`text-xs font-semibold ${isActive ? 'text-cred-accent' : 'text-gray-500'}`}>
-                  {tab.name}
-                </span>
-                {isActive && (
-                  <div className="absolute top-0 w-10 h-1 bg-cred-accent rounded-b-full"></div>
-                )}
-              </button>
-            )
-          })}
+      {/* Tab Bar - Universal Design: 56px height, equal spacing, 48px+ touch targets */}
+      <div className="fixed bottom-0 left-0 right-0 bg-cred-darker/95 backdrop-blur-lg border-t border-gray-800 z-50">
+        <div className="relative">
+          {/* Tabs container - 56px height (h-14) with equal spacing */}
+          <div className="flex items-center justify-evenly px-4 h-14">
+            {tabs.map((tab, index) => {
+              const Icon = tab.icon
+              const isActive = activeTab === index
+              return (
+                <button
+                  key={index}
+                  onClick={() => setActiveTab(index)}
+                  className="relative flex flex-col items-center justify-center gap-1 w-16 h-14 transition-all duration-200 active:scale-95"
+                >
+                  {/* Active indicator at TOP of tab bar - centered */}
+                  {isActive && (
+                    <div className="absolute -top-[1px] left-1/2 -translate-x-1/2 w-16 h-1 bg-cred-accent rounded-b-full"></div>
+                  )}
+
+                  <Icon className={`w-6 h-6 transition-colors ${
+                    isActive ? 'text-cred-accent' : 'text-gray-500'
+                  }`} />
+
+                  <span className={`text-[11px] font-medium transition-colors ${
+                    isActive ? 'text-cred-accent' : 'text-gray-500'
+                  }`}>
+                    {tab.name}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Safe area spacer for bottom gestures/notch */}
+          <div className="h-[env(safe-area-inset-bottom,0px)] bg-cred-darker"></div>
         </div>
       </div>
     </div>
