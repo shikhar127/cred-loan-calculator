@@ -72,8 +72,9 @@ input[type="range"] {
 
 input[type="range"]::-webkit-slider-track {
   background: linear-gradient(to right, #23f0c7, #7cffb2);
-  height: 4px;
-  border-radius: 2px;
+  height: 6px;
+  border-radius: 3px;
+  box-shadow: 0 0 8px rgba(35, 240, 199, 0.3);
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -83,7 +84,7 @@ input[type="range"]::-webkit-slider-thumb {
   height: 28px;
   width: 28px;
   border-radius: 50%;
-  margin-top: -12px;
+  margin-top: -11px;
   box-shadow: 0 4px 12px rgba(35, 240, 199, 0.6);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -96,8 +97,9 @@ input[type="range"]::-webkit-slider-thumb:active {
 
 input[type="range"]::-moz-range-track {
   background: linear-gradient(to right, #23f0c7, #7cffb2);
-  height: 4px;
-  border-radius: 2px;
+  height: 6px;
+  border-radius: 3px;
+  box-shadow: 0 0 8px rgba(35, 240, 199, 0.3);
 }
 
 input[type="range"]::-moz-range-thumb {

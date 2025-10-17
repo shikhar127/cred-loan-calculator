@@ -40,7 +40,7 @@ const LoanInputs = ({
       </div>
 
       {/* Loan Amount */}
-      <div className="bg-cred-dark/50 p-4 rounded-xl border border-gray-800">
+      <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
         <label className="text-gray-400 text-xs font-medium uppercase tracking-wide">Loan Amount</label>
         <div className="flex items-baseline gap-2 mt-2 mb-1">
           <span className="text-cred-accent text-xl font-bold">₹</span>
@@ -64,7 +64,7 @@ const LoanInputs = ({
       </div>
 
       {/* Tenure */}
-      <div className="bg-cred-dark/50 p-4 rounded-xl border border-gray-800">
+      <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
         <label className="text-gray-400 text-xs font-medium uppercase tracking-wide">Tenure</label>
         <div className="flex items-center gap-3 mt-2 mb-1">
           <div className="text-white text-3xl font-bold tracking-tight">
@@ -94,7 +94,7 @@ const LoanInputs = ({
       </div>
 
       {/* ROI */}
-      <div className="bg-cred-dark/50 p-4 rounded-xl border border-gray-800">
+      <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
         <label className="text-gray-400 text-xs font-medium uppercase tracking-wide">Interest Rate (p.a.)</label>
         <div className="flex items-baseline gap-2 mt-2 mb-1">
           <div className="text-white text-3xl font-bold tracking-tight">

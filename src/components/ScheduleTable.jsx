@@ -5,7 +5,7 @@ const ScheduleTable = ({ schedule, formatCurrency }) => {
     <div className="max-h-80 overflow-y-auto">
       <div className="space-y-2">
         {schedule.map((item) => (
-          <div key={item.month} className="bg-cred-dark/70 p-3 rounded-xl text-xs border border-gray-800">
+          <div key={item.month} className="bg-cred-darker p-3 rounded-xl text-xs border-2 border-gray-700">
             <div className="flex justify-between items-center mb-2">
               <span className="text-cred-accent font-bold text-sm">Month {item.month}</span>
               <span className="text-white font-bold text-sm">{formatCurrency(item.emi)}</span>

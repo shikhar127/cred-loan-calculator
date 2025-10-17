@@ -59,7 +59,7 @@ const LoanComparison = ({ formatCurrency, formatNumber }) => {
   return (
     <div className="space-y-4">
       {/* Loan A */}
-      <div className="bg-cred-dark/50 p-4 rounded-xl border-2 border-blue-500/30">
+      <div className="bg-cred-darker p-4 rounded-xl border-2 border-blue-500/40">
         <input
           type="text"
           value={loanNameA}
@@ -147,7 +147,7 @@ const LoanComparison = ({ formatCurrency, formatNumber }) => {
       </div>
 
       {/* Loan B */}
-      <div className="bg-cred-dark/50 p-4 rounded-xl border-2 border-pink-500/30">
+      <div className="bg-cred-darker p-4 rounded-xl border-2 border-pink-500/40">
         <input
           type="text"
           value={loanNameB}

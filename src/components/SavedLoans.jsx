@@ -86,7 +86,7 @@ const SavedLoans = ({ formatCurrency, onLoadLoan }) => {
           return (
             <div
               key={loan.id}
-              className="bg-cred-dark/70 p-4 rounded-xl border border-gray-800 hover:border-cred-accent/30 transition-all duration-200 group"
+              className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700 hover:border-cred-accent/50 transition-all duration-200 group"
             >
               {/* Header */}
               <div className="flex justify-between items-start mb-3">

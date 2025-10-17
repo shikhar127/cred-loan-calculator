@@ -99,7 +99,7 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
       {/* Input Fields */}
       <div className="space-y-4">
         {/* Monthly Salary */}
-        <div className="bg-cred-dark/50 p-4 rounded-xl border border-gray-800">
+        <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
           <label className="text-gray-400 text-xs font-medium uppercase tracking-wide">Monthly Salary</label>
           <div className="flex items-baseline gap-2 mt-2 mb-1">
             <span className="text-cred-accent text-xl font-bold">₹</span>
@@ -123,7 +123,7 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
         </div>
 
         {/* Existing EMIs */}
-        <div className="bg-cred-dark/50 p-4 rounded-xl border border-gray-800">
+        <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
           <label className="text-gray-400 text-xs font-medium uppercase tracking-wide">Existing EMIs/Month</label>
           <div className="flex items-baseline gap-2 mt-2 mb-1">
             <span className="text-cred-accent text-xl font-bold">₹</span>
@@ -147,7 +147,7 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
         </div>
 
         {/* Monthly Expenses */}
-        <div className="bg-cred-dark/50 p-4 rounded-xl border border-gray-800">
+        <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
           <label className="text-gray-400 text-xs font-medium uppercase tracking-wide">Monthly Expenses</label>
           <div className="flex items-baseline gap-2 mt-2 mb-1">
             <span className="text-cred-accent text-xl font-bold">₹</span>
@@ -171,7 +171,7 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
         </div>
 
         {/* Credit Score */}
-        <div className="bg-cred-dark/50 p-4 rounded-xl border border-gray-800">
+        <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
           <label className="text-gray-400 text-xs font-medium uppercase tracking-wide mb-3 block">Credit Score</label>
           <div className="grid grid-cols-2 gap-2">
             <button
@@ -248,7 +248,7 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
           </div>
 
           {/* Details */}
-          <div className="bg-cred-darker/50 p-4 rounded-xl border border-gray-800 space-y-3">
+          <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700 space-y-3">
             <div className="flex justify-between items-center text-sm">
               <span className="text-gray-400">Disposable Income</span>
               <span className="text-white font-semibold">{formatCurrency(eligibilityData.disposableIncome)}</span>

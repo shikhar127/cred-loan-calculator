@@ -6,7 +6,7 @@ const ChartsSection = ({ results, formatCurrency }) => {
   return (
     <div className="space-y-4">
       {/* Pie Chart */}
-      <div className="bg-cred-dark/50 p-4 rounded-xl border border-gray-800">
+      <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
         <h3 className="text-white text-xs font-semibold mb-3 uppercase tracking-wide">Payment Breakdown</h3>
         <ResponsiveContainer width="100%" height={200}>
           <PieChart>
@@ -45,7 +45,7 @@ const ChartsSection = ({ results, formatCurrency }) => {
 
       {/* Line Chart */}
       {results.chartData && results.chartData.length > 0 && (
-        <div className="bg-cred-dark/50 p-4 rounded-xl border border-gray-800">
+        <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
           <h3 className="text-white text-xs font-semibold mb-3 uppercase tracking-wide">
             Principal vs Interest Trend
           </h3>

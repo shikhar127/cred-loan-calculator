@@ -50,7 +50,7 @@ const ForeclosureCalculator = ({ results, formatCurrency, loanAmount, tenure, te
   return (
     <div className="space-y-4">
       {/* Foreclosure Month Selector */}
-      <div className="bg-cred-dark/50 p-4 rounded-xl border border-gray-800">
+      <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
         <label className="text-gray-400 text-xs font-medium uppercase tracking-wide">Foreclose After (Months)</label>
         <div className="flex items-baseline gap-2 mt-2 mb-1">
           <div className="text-white text-3xl font-bold tracking-tight">{foreclosureMonth}</div>
@@ -71,7 +71,7 @@ const ForeclosureCalculator = ({ results, formatCurrency, loanAmount, tenure, te
       </div>
 
       {/* Foreclosure Charge % */}
-      <div className="bg-cred-dark/50 p-4 rounded-xl border border-gray-800">
+      <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
         <label className="text-gray-400 text-xs font-medium uppercase tracking-wide">Foreclosure Charges (%)</label>
         <div className="flex items-baseline gap-2 mt-2 mb-1">
           <div className="text-white text-3xl font-bold tracking-tight">{foreclosureChargePercent}</div>
@@ -147,7 +147,7 @@ const ForeclosureCalculator = ({ results, formatCurrency, loanAmount, tenure, te
           </div>
 
           {/* Breakdown */}
-          <div className="bg-cred-darker/50 p-4 rounded-xl border border-gray-800 space-y-2 text-xs">
+          <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700 space-y-2 text-xs">
             <h4 className="text-white font-semibold uppercase tracking-wide mb-3">Detailed Breakdown</h4>
             <div className="flex justify-between">
               <span className="text-gray-400">Paid So Far ({foreclosureMonth} months)</span>
