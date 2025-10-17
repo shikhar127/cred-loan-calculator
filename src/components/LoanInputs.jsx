@@ -21,7 +21,7 @@ const LoanInputs = ({
     <div className="space-y-3">
       {/* Quick Presets */}
       <div>
-        <p className="text-cred-brown text-[10px] font-medium uppercase tracking-wide mb-2">Quick Select</p>
+        <p className="text-gray-400 text-[10px] font-medium uppercase tracking-wide mb-2">Quick Select</p>
         <div className="grid grid-cols-4 gap-2">
           {presets.map((preset) => (
             <button
@@ -29,8 +29,8 @@ const LoanInputs = ({
               onClick={() => setLoanAmount(preset.value)}
               className={`py-2 px-2 rounded-lg font-bold text-xs transition-all duration-200 ${
                 loanAmount === preset.value
-                  ? 'bg-gradient-to-br from-cred-orange to-cred-orange-dark text-white shadow-lg shadow-cred-orange/30 scale-105'
-                  : 'bg-white text-cred-brown hover:bg-cred-tan hover:text-cred-brown-dark border-2 border-cred-brown/10 active:scale-95'
+                  ? 'bg-gradient-to-br from-cred-accent to-cred-accent-light text-black shadow-lg shadow-cred-accent/30 scale-105'
+                  : 'bg-cred-darker/70 text-gray-400 hover:bg-cred-darker hover:text-white border-2 border-gray-800 active:scale-95'
               }`}
             >
               {preset.label}
@@ -40,11 +40,11 @@ const LoanInputs = ({
       </div>
 
       {/* Loan Amount */}
-      <div className="bg-white p-3 rounded-xl border-2 border-cred-brown/20">
-        <label className="text-cred-brown text-[10px] font-medium uppercase tracking-wide">Loan Amount</label>
+      <div className="bg-cred-darker p-3 rounded-xl border-2 border-gray-700">
+        <label className="text-gray-400 text-[10px] font-medium uppercase tracking-wide">Loan Amount</label>
         <div className="flex items-baseline gap-1.5 mt-1.5 mb-1">
-          <span className="text-cred-orange text-lg font-bold">₹</span>
-          <div className="text-cred-brown-dark text-2xl font-bold tracking-tight">
+          <span className="text-cred-accent text-lg font-bold">₹</span>
+          <div className="text-white text-2xl font-bold tracking-tight">
             {formatNumber(loanAmount)}
           </div>
         </div>
@@ -57,23 +57,23 @@ const LoanInputs = ({
           onChange={(e) => setLoanAmount(Number(e.target.value))}
           className="w-full mt-2"
         />
-        <div className="flex justify-between text-[10px] font-medium text-cred-brown mt-1.5">
+        <div className="flex justify-between text-[10px] font-medium text-gray-500 mt-1.5">
           <span>₹10K</span>
           <span>₹1Cr</span>
         </div>
       </div>
 
       {/* Tenure */}
-      <div className="bg-white p-3 rounded-xl border-2 border-cred-brown/20">
-        <label className="text-cred-brown text-[10px] font-medium uppercase tracking-wide">Tenure</label>
+      <div className="bg-cred-darker p-3 rounded-xl border-2 border-gray-700">
+        <label className="text-gray-400 text-[10px] font-medium uppercase tracking-wide">Tenure</label>
         <div className="flex items-center gap-2 mt-1.5 mb-1">
-          <div className="text-cred-brown-dark text-2xl font-bold tracking-tight">
+          <div className="text-white text-2xl font-bold tracking-tight">
             {tenure}
           </div>
           <select
             value={tenureType}
             onChange={(e) => setTenureType(e.target.value)}
-            className="bg-white text-cred-orange px-2 py-1 rounded-lg outline-none text-sm font-semibold border-2 border-cred-orange/20"
+            className="bg-cred-darker text-cred-accent px-2 py-1 rounded-lg outline-none text-sm font-semibold border-2 border-cred-accent/20"
           >
             <option value="months">Months</option>
             <option value="years">Years</option>
@@ -87,20 +87,20 @@ const LoanInputs = ({
           onChange={(e) => setTenure(Number(e.target.value))}
           className="w-full mt-2"
         />
-        <div className="flex justify-between text-[10px] font-medium text-cred-brown mt-1.5">
+        <div className="flex justify-between text-[10px] font-medium text-gray-500 mt-1.5">
           <span>1 {tenureType === 'years' ? 'Yr' : 'Mo'}</span>
           <span>{tenureType === 'years' ? '30 Yrs' : '360 Mos'}</span>
         </div>
       </div>
 
       {/* ROI */}
-      <div className="bg-white p-3 rounded-xl border-2 border-cred-brown/20">
-        <label className="text-cred-brown text-[10px] font-medium uppercase tracking-wide">Interest Rate (p.a.)</label>
+      <div className="bg-cred-darker p-3 rounded-xl border-2 border-gray-700">
+        <label className="text-gray-400 text-[10px] font-medium uppercase tracking-wide">Interest Rate (p.a.)</label>
         <div className="flex items-baseline gap-1.5 mt-1.5 mb-1">
-          <div className="text-cred-brown-dark text-2xl font-bold tracking-tight">
+          <div className="text-white text-2xl font-bold tracking-tight">
             {roi}
           </div>
-          <span className="text-cred-orange text-lg font-bold">%</span>
+          <span className="text-cred-accent text-lg font-bold">%</span>
         </div>
         <input
           type="range"
@@ -111,7 +111,7 @@ const LoanInputs = ({
           onChange={(e) => setRoi(Number(e.target.value))}
           className="w-full mt-2"
         />
-        <div className="flex justify-between text-[10px] font-medium text-cred-brown mt-1.5">
+        <div className="flex justify-between text-[10px] font-medium text-gray-500 mt-1.5">
           <span>0%</span>
           <span>30%</span>
         </div>

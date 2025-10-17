@@ -59,22 +59,22 @@ const LoanComparison = ({ formatCurrency, formatNumber }) => {
   return (
     <div className="space-y-4">
       {/* Loan A */}
-      <div className="bg-white p-4 rounded-xl border-2 border-cred-orange/40">
+      <div className="bg-cred-darker p-4 rounded-xl border-2 border-blue-500/40">
         <input
           type="text"
           value={loanNameA}
           onChange={(e) => setLoanNameA(e.target.value)}
-          className="bg-transparent text-cred-orange font-bold text-sm mb-3 outline-none border-b border-cred-orange/30 pb-1 w-full"
+          className="bg-transparent text-blue-400 font-bold text-sm mb-3 outline-none border-b border-blue-500/30 pb-1 w-full"
           placeholder="Loan A Name"
         />
 
         <div className="space-y-3">
           {/* Amount */}
           <div>
-            <label className="text-cred-brown text-[10px] font-medium uppercase">Amount</label>
+            <label className="text-gray-400 text-[10px] font-medium uppercase">Amount</label>
             <div className="flex items-baseline gap-1 mt-1">
-              <span className="text-cred-orange text-lg font-bold">₹</span>
-              <div className="text-cred-brown-dark text-2xl font-bold">{formatNumber(loanAmountA)}</div>
+              <span className="text-blue-400 text-lg font-bold">₹</span>
+              <div className="text-white text-2xl font-bold">{formatNumber(loanAmountA)}</div>
             </div>
             <input
               type="range"
@@ -89,8 +89,8 @@ const LoanComparison = ({ formatCurrency, formatNumber }) => {
 
           {/* Tenure */}
           <div>
-            <label className="text-cred-brown text-[10px] font-medium uppercase">Tenure (Months)</label>
-            <div className="text-cred-brown-dark text-2xl font-bold mt-1">{tenureA}</div>
+            <label className="text-gray-400 text-[10px] font-medium uppercase">Tenure (Months)</label>
+            <div className="text-white text-2xl font-bold mt-1">{tenureA}</div>
             <input
               type="range"
               min="1"
@@ -103,10 +103,10 @@ const LoanComparison = ({ formatCurrency, formatNumber }) => {
 
           {/* ROI */}
           <div>
-            <label className="text-cred-brown text-[10px] font-medium uppercase">ROI (p.a.)</label>
+            <label className="text-gray-400 text-[10px] font-medium uppercase">ROI (p.a.)</label>
             <div className="flex items-baseline gap-1 mt-1">
-              <div className="text-cred-brown-dark text-2xl font-bold">{roiA}</div>
-              <span className="text-cred-orange text-xl font-bold">%</span>
+              <div className="text-white text-2xl font-bold">{roiA}</div>
+              <span className="text-blue-400 text-xl font-bold">%</span>
             </div>
             <input
               type="range"
@@ -122,18 +122,18 @@ const LoanComparison = ({ formatCurrency, formatNumber }) => {
 
         {/* Results A */}
         {resultsA && (
-          <div className="mt-4 pt-4 border-t border-cred-orange/20 space-y-2 text-xs">
+          <div className="mt-4 pt-4 border-t border-blue-500/20 space-y-2 text-xs">
             <div className="flex justify-between">
-              <span className="text-cred-brown">EMI</span>
-              <span className="text-cred-brown-dark font-bold">{formatCurrency(resultsA.emi)}</span>
+              <span className="text-gray-400">EMI</span>
+              <span className="text-white font-bold">{formatCurrency(resultsA.emi)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-cred-brown">Total Interest</span>
-              <span className="text-cred-orange font-bold">{formatCurrency(resultsA.totalInterest)}</span>
+              <span className="text-gray-400">Total Interest</span>
+              <span className="text-blue-400 font-bold">{formatCurrency(resultsA.totalInterest)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-cred-brown">Total Payable</span>
-              <span className="text-cred-brown-dark font-bold">{formatCurrency(resultsA.totalAmount)}</span>
+              <span className="text-gray-400">Total Payable</span>
+              <span className="text-white font-bold">{formatCurrency(resultsA.totalAmount)}</span>
             </div>
           </div>
         )}
@@ -141,28 +141,28 @@ const LoanComparison = ({ formatCurrency, formatNumber }) => {
 
       {/* VS Divider */}
       <div className="flex items-center justify-center">
-        <div className="bg-cred-orange text-white font-extrabold text-sm px-4 py-2 rounded-full">
+        <div className="bg-cred-accent text-black font-extrabold text-sm px-4 py-2 rounded-full">
           VS
         </div>
       </div>
 
       {/* Loan B */}
-      <div className="bg-white p-4 rounded-xl border-2 border-cred-brown/40">
+      <div className="bg-cred-darker p-4 rounded-xl border-2 border-pink-500/40">
         <input
           type="text"
           value={loanNameB}
           onChange={(e) => setLoanNameB(e.target.value)}
-          className="bg-transparent text-cred-brown font-bold text-sm mb-3 outline-none border-b border-cred-brown/30 pb-1 w-full"
+          className="bg-transparent text-pink-400 font-bold text-sm mb-3 outline-none border-b border-pink-500/30 pb-1 w-full"
           placeholder="Loan B Name"
         />
 
         <div className="space-y-3">
           {/* Amount */}
           <div>
-            <label className="text-cred-brown text-[10px] font-medium uppercase">Amount</label>
+            <label className="text-gray-400 text-[10px] font-medium uppercase">Amount</label>
             <div className="flex items-baseline gap-1 mt-1">
-              <span className="text-cred-brown text-lg font-bold">₹</span>
-              <div className="text-cred-brown-dark text-2xl font-bold">{formatNumber(loanAmountB)}</div>
+              <span className="text-pink-400 text-lg font-bold">₹</span>
+              <div className="text-white text-2xl font-bold">{formatNumber(loanAmountB)}</div>
             </div>
             <input
               type="range"
@@ -177,8 +177,8 @@ const LoanComparison = ({ formatCurrency, formatNumber }) => {
 
           {/* Tenure */}
           <div>
-            <label className="text-cred-brown text-[10px] font-medium uppercase">Tenure (Months)</label>
-            <div className="text-cred-brown-dark text-2xl font-bold mt-1">{tenureB}</div>
+            <label className="text-gray-400 text-[10px] font-medium uppercase">Tenure (Months)</label>
+            <div className="text-white text-2xl font-bold mt-1">{tenureB}</div>
             <input
               type="range"
               min="1"
@@ -191,10 +191,10 @@ const LoanComparison = ({ formatCurrency, formatNumber }) => {
 
           {/* ROI */}
           <div>
-            <label className="text-cred-brown text-[10px] font-medium uppercase">ROI (p.a.)</label>
+            <label className="text-gray-400 text-[10px] font-medium uppercase">ROI (p.a.)</label>
             <div className="flex items-baseline gap-1 mt-1">
-              <div className="text-cred-brown-dark text-2xl font-bold">{roiB}</div>
-              <span className="text-cred-brown text-xl font-bold">%</span>
+              <div className="text-white text-2xl font-bold">{roiB}</div>
+              <span className="text-pink-400 text-xl font-bold">%</span>
             </div>
             <input
               type="range"
@@ -210,18 +210,18 @@ const LoanComparison = ({ formatCurrency, formatNumber }) => {
 
         {/* Results B */}
         {resultsB && (
-          <div className="mt-4 pt-4 border-t border-cred-brown/20 space-y-2 text-xs">
+          <div className="mt-4 pt-4 border-t border-pink-500/20 space-y-2 text-xs">
             <div className="flex justify-between">
-              <span className="text-cred-brown">EMI</span>
-              <span className="text-cred-brown-dark font-bold">{formatCurrency(resultsB.emi)}</span>
+              <span className="text-gray-400">EMI</span>
+              <span className="text-white font-bold">{formatCurrency(resultsB.emi)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-cred-brown">Total Interest</span>
-              <span className="text-cred-brown font-bold">{formatCurrency(resultsB.totalInterest)}</span>
+              <span className="text-gray-400">Total Interest</span>
+              <span className="text-pink-400 font-bold">{formatCurrency(resultsB.totalInterest)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-cred-brown">Total Payable</span>
-              <span className="text-cred-brown-dark font-bold">{formatCurrency(resultsB.totalAmount)}</span>
+              <span className="text-gray-400">Total Payable</span>
+              <span className="text-white font-bold">{formatCurrency(resultsB.totalAmount)}</span>
             </div>
           </div>
         )}
@@ -231,13 +231,13 @@ const LoanComparison = ({ formatCurrency, formatNumber }) => {
       {diff && (
         <div className={`p-5 rounded-xl border-2 ${
           diff.better === 'A'
-            ? 'bg-cred-orange/10 border-cred-orange/30'
-            : 'bg-cred-brown/10 border-cred-brown/30'
+            ? 'bg-blue-500/10 border-blue-500/30'
+            : 'bg-pink-500/10 border-pink-500/30'
         }`}>
           <div className="text-center mb-4">
-            <p className="text-cred-brown text-xs uppercase tracking-wide mb-1">Better Option</p>
+            <p className="text-gray-400 text-xs uppercase tracking-wide mb-1">Better Option</p>
             <p className={`text-4xl font-extrabold ${
-              diff.better === 'A' ? 'text-cred-orange' : 'text-cred-brown'
+              diff.better === 'A' ? 'text-blue-400' : 'text-pink-400'
             }`}>
               {diff.better === 'A' ? loanNameA : loanNameB}
             </p>
@@ -245,26 +245,26 @@ const LoanComparison = ({ formatCurrency, formatNumber }) => {
 
           <div className="space-y-2 text-sm">
             <div className="flex justify-between items-center">
-              <span className="text-cred-brown">EMI Difference</span>
+              <span className="text-gray-400">EMI Difference</span>
               <span className={`font-bold ${diff.emiDiff > 0 ? 'text-red-400' : 'text-green-400'}`}>
                 {diff.emiDiff > 0 ? '+' : ''}{formatCurrency(Math.abs(diff.emiDiff))}
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-cred-brown">Interest Difference</span>
+              <span className="text-gray-400">Interest Difference</span>
               <span className={`font-bold ${diff.interestDiff > 0 ? 'text-red-400' : 'text-green-400'}`}>
                 {diff.interestDiff > 0 ? '+' : ''}{formatCurrency(Math.abs(diff.interestDiff))}
               </span>
             </div>
-            <div className="flex justify-between items-center pt-2 border-t border-cred-brown/20">
-              <span className="text-cred-brown-dark font-semibold">Total Savings</span>
+            <div className="flex justify-between items-center pt-2 border-t border-gray-700">
+              <span className="text-white font-semibold">Total Savings</span>
               <span className="text-green-400 font-bold text-lg">
                 {formatCurrency(Math.abs(diff.interestDiff))}
               </span>
             </div>
           </div>
 
-          <p className="text-cred-brown text-xs text-center mt-4">
+          <p className="text-gray-400 text-xs text-center mt-4">
             {diff.better === 'A' ? loanNameA : loanNameB} saves you {formatCurrency(Math.abs(diff.interestDiff))} in interest
           </p>
         </div>

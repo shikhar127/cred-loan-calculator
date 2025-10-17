@@ -99,11 +99,11 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
       {/* Input Fields */}
       <div className="space-y-4">
         {/* Monthly Salary */}
-        <div className="bg-white p-4 rounded-xl border-2 border-cred-brown/20">
-          <label className="text-cred-brown text-xs font-medium uppercase tracking-wide">Monthly Salary</label>
+        <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
+          <label className="text-gray-400 text-xs font-medium uppercase tracking-wide">Monthly Salary</label>
           <div className="flex items-baseline gap-2 mt-2 mb-1">
-            <span className="text-cred-orange text-xl font-bold">₹</span>
-            <div className="text-cred-brown-dark text-3xl font-bold tracking-tight">
+            <span className="text-cred-accent text-xl font-bold">₹</span>
+            <div className="text-white text-3xl font-bold tracking-tight">
               {formatNumber(monthlySalary)}
             </div>
           </div>
@@ -116,18 +116,18 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
             onChange={(e) => setMonthlySalary(Number(e.target.value))}
             className="w-full mt-3"
           />
-          <div className="flex justify-between text-xs font-medium text-cred-brown mt-2">
+          <div className="flex justify-between text-xs font-medium text-gray-500 mt-2">
             <span>₹10K</span>
             <span>₹5L</span>
           </div>
         </div>
 
         {/* Existing EMIs */}
-        <div className="bg-white p-4 rounded-xl border-2 border-cred-brown/20">
-          <label className="text-cred-brown text-xs font-medium uppercase tracking-wide">Existing EMIs/Month</label>
+        <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
+          <label className="text-gray-400 text-xs font-medium uppercase tracking-wide">Existing EMIs/Month</label>
           <div className="flex items-baseline gap-2 mt-2 mb-1">
-            <span className="text-cred-orange text-xl font-bold">₹</span>
-            <div className="text-cred-brown-dark text-3xl font-bold tracking-tight">
+            <span className="text-cred-accent text-xl font-bold">₹</span>
+            <div className="text-white text-3xl font-bold tracking-tight">
               {formatNumber(existingEMIs)}
             </div>
           </div>
@@ -140,18 +140,18 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
             onChange={(e) => setExistingEMIs(Number(e.target.value))}
             className="w-full mt-3"
           />
-          <div className="flex justify-between text-xs font-medium text-cred-brown mt-2">
+          <div className="flex justify-between text-xs font-medium text-gray-500 mt-2">
             <span>₹0</span>
             <span>₹1L</span>
           </div>
         </div>
 
         {/* Monthly Expenses */}
-        <div className="bg-white p-4 rounded-xl border-2 border-cred-brown/20">
-          <label className="text-cred-brown text-xs font-medium uppercase tracking-wide">Monthly Expenses</label>
+        <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
+          <label className="text-gray-400 text-xs font-medium uppercase tracking-wide">Monthly Expenses</label>
           <div className="flex items-baseline gap-2 mt-2 mb-1">
-            <span className="text-cred-orange text-xl font-bold">₹</span>
-            <div className="text-cred-brown-dark text-3xl font-bold tracking-tight">
+            <span className="text-cred-accent text-xl font-bold">₹</span>
+            <div className="text-white text-3xl font-bold tracking-tight">
               {formatNumber(monthlyExpenses)}
             </div>
           </div>
@@ -164,22 +164,22 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
             onChange={(e) => setMonthlyExpenses(Number(e.target.value))}
             className="w-full mt-3"
           />
-          <div className="flex justify-between text-xs font-medium text-cred-brown mt-2">
+          <div className="flex justify-between text-xs font-medium text-gray-500 mt-2">
             <span>₹5K</span>
             <span>₹2L</span>
           </div>
         </div>
 
         {/* Credit Score */}
-        <div className="bg-white p-4 rounded-xl border-2 border-cred-brown/20">
-          <label className="text-cred-brown text-xs font-medium uppercase tracking-wide mb-3 block">Credit Score</label>
+        <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
+          <label className="text-gray-400 text-xs font-medium uppercase tracking-wide mb-3 block">Credit Score</label>
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={() => setCreditScore('excellent')}
               className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
                 creditScore === 'excellent'
                   ? 'bg-green-500 text-white shadow-lg'
-                  : 'bg-white text-cred-brown border border-cred-brown/20 hover:border-cred-brown/40'
+                  : 'bg-cred-darker text-gray-400 border border-gray-700 hover:border-gray-600'
               }`}
             >
               Excellent
@@ -189,7 +189,7 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
               className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
                 creditScore === 'good'
                   ? 'bg-blue-500 text-white shadow-lg'
-                  : 'bg-white text-cred-brown border border-cred-brown/20 hover:border-cred-brown/40'
+                  : 'bg-cred-darker text-gray-400 border border-gray-700 hover:border-gray-600'
               }`}
             >
               Good
@@ -199,7 +199,7 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
               className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
                 creditScore === 'fair'
                   ? 'bg-yellow-500 text-black shadow-lg'
-                  : 'bg-white text-cred-brown border border-cred-brown/20 hover:border-cred-brown/40'
+                  : 'bg-cred-darker text-gray-400 border border-gray-700 hover:border-gray-600'
               }`}
             >
               Fair
@@ -209,7 +209,7 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
               className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
                 creditScore === 'poor'
                   ? 'bg-red-500 text-white shadow-lg'
-                  : 'bg-white text-cred-brown border border-cred-brown/20 hover:border-cred-brown/40'
+                  : 'bg-cred-darker text-gray-400 border border-gray-700 hover:border-gray-600'
               }`}
             >
               Poor
@@ -229,7 +229,7 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
             'bg-red-500/10 border-red-500/30'
           }`}>
             <div className="text-center">
-              <p className="text-cred-brown text-xs uppercase tracking-wide mb-1">Your Eligibility</p>
+              <p className="text-gray-400 text-xs uppercase tracking-wide mb-1">Your Eligibility</p>
               <p className={`text-5xl font-extrabold mb-2 ${
                 eligibilityData.ratingColor === 'green' ? 'text-green-400' :
                 eligibilityData.ratingColor === 'blue' ? 'text-blue-400' :
@@ -238,32 +238,32 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
               }`}>
                 {eligibilityData.rating}
               </p>
-              <p className="text-cred-brown-dark text-sm">
+              <p className="text-white text-sm">
                 You can afford a loan up to
               </p>
-              <p className="text-cred-brown-dark text-3xl font-bold mt-2">
+              <p className="text-white text-3xl font-bold mt-2">
                 {formatCurrency(eligibilityData.maxLoanAmount)}
               </p>
             </div>
           </div>
 
           {/* Details */}
-          <div className="bg-white p-4 rounded-xl border-2 border-cred-brown/20 space-y-3">
+          <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700 space-y-3">
             <div className="flex justify-between items-center text-sm">
-              <span className="text-cred-brown">Disposable Income</span>
-              <span className="text-cred-brown-dark font-semibold">{formatCurrency(eligibilityData.disposableIncome)}</span>
+              <span className="text-gray-400">Disposable Income</span>
+              <span className="text-white font-semibold">{formatCurrency(eligibilityData.disposableIncome)}</span>
             </div>
             <div className="flex justify-between items-center text-sm">
-              <span className="text-cred-brown">Max Affordable EMI</span>
-              <span className="text-cred-orange font-bold">{formatCurrency(eligibilityData.maxEMI)}</span>
+              <span className="text-gray-400">Max Affordable EMI</span>
+              <span className="text-cred-accent font-bold">{formatCurrency(eligibilityData.maxEMI)}</span>
             </div>
             <div className="flex justify-between items-center text-sm">
-              <span className="text-cred-brown">EMI to Income Ratio</span>
-              <span className="text-cred-brown-dark font-semibold">{Math.round(eligibilityData.multiplier * 100)}%</span>
+              <span className="text-gray-400">EMI to Income Ratio</span>
+              <span className="text-white font-semibold">{Math.round(eligibilityData.multiplier * 100)}%</span>
             </div>
-            <div className="pt-3 border-t border-cred-brown/20">
-              <p className="text-cred-brown text-xs mb-2">Based on:</p>
-              <p className="text-cred-brown text-xs">10% ROI • 36 months tenure • {creditScore.toUpperCase()} credit</p>
+            <div className="pt-3 border-t border-gray-700">
+              <p className="text-gray-400 text-xs mb-2">Based on:</p>
+              <p className="text-gray-500 text-xs">10% ROI • 36 months tenure • {creditScore.toUpperCase()} credit</p>
             </div>
           </div>
 
@@ -273,7 +273,7 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
               <h4 className="text-yellow-400 text-xs font-semibold uppercase tracking-wide mb-2">Recommendations</h4>
               <ul className="space-y-1.5">
                 {eligibilityData.recommendations.map((rec, idx) => (
-                  <li key={idx} className="text-cred-brown-dark text-xs leading-relaxed">
+                  <li key={idx} className="text-gray-300 text-xs leading-relaxed">
                     {rec}
                   </li>
                 ))}
@@ -285,7 +285,7 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
           {eligibilityData.maxLoanAmount > 0 && (
             <button
               onClick={handleApplyToCalculator}
-              className="w-full bg-gradient-to-r from-cred-orange to-cred-orange-dark text-white font-bold py-4 rounded-xl shadow-lg shadow-cred-orange/30 hover:shadow-cred-orange/50 transition-all duration-200 active:scale-95"
+              className="w-full bg-gradient-to-r from-cred-accent to-cred-accent-light text-black font-bold py-4 rounded-xl shadow-lg shadow-cred-accent/30 hover:shadow-cred-accent/50 transition-all duration-200 active:scale-95"
             >
               Apply ₹{formatNumber(eligibilityData.maxLoanAmount)} to Calculator
             </button>
