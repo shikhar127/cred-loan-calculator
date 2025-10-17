@@ -24,9 +24,9 @@ const LoanCalculator = () => {
   const exportRef = useRef(null)
 
   // Debounced values for real-time calculation
-  const debouncedLoanAmount = useDebouncedValue(loanAmount, 300)
-  const debouncedTenure = useDebouncedValue(tenure, 300)
-  const debouncedRoi = useDebouncedValue(roi, 300)
+  const debouncedLoanAmount = useDebouncedValue(loanAmount, 100)
+  const debouncedTenure = useDebouncedValue(tenure, 100)
+  const debouncedRoi = useDebouncedValue(roi, 100)
 
   // Auto-calculate on load and when values change
   useEffect(() => {
@@ -204,17 +204,18 @@ const LoanCalculator = () => {
     <div className="px-4 py-4 pb-20 space-y-3">
       {/* Hero EMI Display - Always Visible */}
       {results && (
-        <div className="bg-gradient-to-br from-cred-accent/20 to-cred-accent-light/10 p-4 rounded-xl border-2 border-cred-accent/30 shadow-lg">
-          <p className="text-gray-400 text-[10px] uppercase tracking-wide mb-1">Your Monthly EMI</p>
-          <p className="text-white text-3xl font-extrabold">{formatCurrency(results.emi)}</p>
-          <div className="mt-2 pt-2 border-t border-cred-accent/20 grid grid-cols-2 gap-2 text-[10px]">
+        <div className="bg-gradient-to-br from-cred-orange to-cred-orange-dark p-6 rounded-3xl shadow-xl">
+          <p className="text-white text-xs uppercase tracking-wide mb-2 font-medium">LOAN REPAYMENT</p>
+          <p className="text-white text-5xl font-bold mb-1">{formatCurrency(results.emi)}</p>
+          <p className="text-white/80 text-sm">monthly estimate</p>
+          <div className="mt-4 pt-4 border-t border-white/20 grid grid-cols-2 gap-3 text-xs">
             <div>
-              <p className="text-gray-400">Total Payable</p>
-              <p className="text-white text-sm font-bold">{formatCurrency(results.totalAmount)}</p>
+              <p className="text-white/70">Total Payable</p>
+              <p className="text-white text-base font-semibold mt-0.5">{formatCurrency(results.totalAmount)}</p>
             </div>
             <div>
-              <p className="text-gray-400">Interest</p>
-              <p className="text-cred-accent-light text-sm font-bold">{formatCurrency(results.totalInterest)}</p>
+              <p className="text-white/70">Interest</p>
+              <p className="text-white text-base font-semibold mt-0.5">{formatCurrency(results.totalInterest)}</p>
             </div>
           </div>
         </div>
@@ -224,21 +225,21 @@ const LoanCalculator = () => {
       <div className="flex gap-2">
         <button
           onClick={() => setShowSaveModal(true)}
-          className="flex-1 bg-cred-darker border-2 border-cred-accent/30 text-cred-accent py-2 rounded-xl text-sm font-bold hover:bg-cred-accent/10 transition active:scale-95 flex items-center justify-center gap-1.5"
+          className="flex-1 bg-white border-2 border-cred-brown/20 text-cred-brown py-3 rounded-xl text-sm font-semibold hover:bg-cred-tan transition active:scale-95 flex items-center justify-center gap-1.5 shadow-sm"
         >
           <Save className="w-4 h-4" />
           Save
         </button>
         <button
           onClick={shareAsLink}
-          className="flex-1 bg-cred-darker border-2 border-cred-accent/30 text-cred-accent py-2 rounded-xl text-sm font-bold hover:bg-cred-accent/10 transition active:scale-95 flex items-center justify-center gap-1.5"
+          className="flex-1 bg-white border-2 border-cred-brown/20 text-cred-brown py-3 rounded-xl text-sm font-semibold hover:bg-cred-tan transition active:scale-95 flex items-center justify-center gap-1.5 shadow-sm"
         >
           <Share className="w-4 h-4" />
           Share
         </button>
         <button
           onClick={exportAsImage}
-          className="bg-cred-darker border-2 border-cred-accent/30 text-cred-accent p-2 rounded-xl hover:bg-cred-accent/10 transition active:scale-95"
+          className="bg-white border-2 border-cred-brown/20 text-cred-brown p-3 rounded-xl hover:bg-cred-tan transition active:scale-95 shadow-sm"
         >
           <Download className="w-4 h-4" />
         </button>
@@ -320,13 +321,13 @@ const LoanCalculator = () => {
 
       {/* Save Loan Modal */}
       {showSaveModal && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-5">
-          <div className="bg-cred-darker rounded-2xl p-6 w-full max-w-sm border-2 border-cred-accent/30">
-            <h3 className="text-white text-xl font-bold mb-4">Save Loan</h3>
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-5">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-sm shadow-2xl">
+            <h3 className="text-cred-brown-dark text-xl font-bold mb-4">Save Loan</h3>
 
             <div className="space-y-4">
               <div>
-                <label className="text-gray-400 text-xs font-medium uppercase tracking-wide block mb-2">
+                <label className="text-cred-brown text-xs font-medium uppercase tracking-wide block mb-2">
                   Loan Name
                 </label>
                 <input
@@ -334,18 +335,18 @@ const LoanCalculator = () => {
                   value={loanName}
                   onChange={(e) => setLoanName(e.target.value)}
                   placeholder="e.g., Car Loan - HDFC"
-                  className="w-full bg-cred-dark border-2 border-gray-700 text-white px-4 py-3 rounded-xl outline-none focus:border-cred-accent transition"
+                  className="w-full bg-cred-tan border-2 border-cred-brown/20 text-cred-brown-dark px-4 py-3 rounded-xl outline-none focus:border-cred-orange transition"
                 />
               </div>
 
               <div>
-                <label className="text-gray-400 text-xs font-medium uppercase tracking-wide block mb-2">
+                <label className="text-cred-brown text-xs font-medium uppercase tracking-wide block mb-2">
                   Loan Type
                 </label>
                 <select
                   value={loanType}
                   onChange={(e) => setLoanType(e.target.value)}
-                  className="w-full bg-cred-dark border-2 border-gray-700 text-white px-4 py-3 rounded-xl outline-none focus:border-cred-accent transition"
+                  className="w-full bg-cred-tan border-2 border-cred-brown/20 text-cred-brown-dark px-4 py-3 rounded-xl outline-none focus:border-cred-orange transition"
                 >
                   <option value="Personal">Personal Loan</option>
                   <option value="Home">Home Loan</option>
@@ -359,7 +360,7 @@ const LoanCalculator = () => {
               <div className="pt-2 space-y-2">
                 <button
                   onClick={handleSaveLoan}
-                  className="w-full bg-gradient-to-r from-cred-accent to-cred-accent-light text-black font-bold py-3 rounded-xl shadow-lg hover:shadow-xl transition active:scale-95"
+                  className="w-full bg-cred-orange text-white font-bold py-3 rounded-xl shadow-lg hover:bg-cred-orange-dark transition active:scale-95"
                 >
                   Save Loan
                 </button>
@@ -368,7 +369,7 @@ const LoanCalculator = () => {
                     setShowSaveModal(false)
                     setLoanName('')
                   }}
-                  className="w-full bg-cred-dark border-2 border-gray-700 text-gray-400 font-bold py-3 rounded-xl hover:bg-gray-800 transition active:scale-95"
+                  className="w-full bg-white border-2 border-cred-brown/20 text-cred-brown font-semibold py-3 rounded-xl hover:bg-cred-tan transition active:scale-95"
                 >
                   Cancel
                 </button>

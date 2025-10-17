@@ -7,10 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        'cred-dark': '#0b0b0f',
-        'cred-darker': '#121318',
-        'cred-accent': '#23f0c7',
-        'cred-accent-light': '#7cffb2',
+        'cred-bg': '#f5f0e8',
+        'cred-orange': '#d4834f',
+        'cred-orange-dark': '#b8704a',
+        'cred-brown': '#8b5a3c',
+        'cred-brown-dark': '#5c3d28',
+        'cred-tan': '#f9f6f1',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

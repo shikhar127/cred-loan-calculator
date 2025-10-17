@@ -54,8 +54,8 @@ const SavedLoans = ({ formatCurrency, onLoadLoan }) => {
   if (savedLoans.length === 0) {
     return (
       <div className="text-center py-8">
-        <p className="text-gray-400 text-sm mb-2">No saved loans yet</p>
-        <p className="text-gray-500 text-xs">Save loans from the calculator to view them here</p>
+        <p className="text-cred-brown text-sm mb-2">No saved loans yet</p>
+        <p className="text-cred-brown text-xs">Save loans from the calculator to view them here</p>
       </div>
     )
   }
@@ -64,13 +64,13 @@ const SavedLoans = ({ formatCurrency, onLoadLoan }) => {
     <div className="space-y-3">
       {/* Header */}
       <div className="flex justify-between items-center mb-2">
-        <p className="text-gray-400 text-xs">
+        <p className="text-cred-brown text-xs">
           {savedLoans.length} / {MAX_SAVES} saved
         </p>
         {savedLoans.length > 0 && (
           <button
             onClick={exportLoans}
-            className="flex items-center gap-1 text-cred-accent text-xs font-semibold hover:text-cred-accent-light transition"
+            className="flex items-center gap-1 text-cred-orange text-xs font-semibold hover:text-cred-orange-dark transition"
           >
             <Download className="w-3 h-3" />
             Export All
@@ -86,13 +86,13 @@ const SavedLoans = ({ formatCurrency, onLoadLoan }) => {
           return (
             <div
               key={loan.id}
-              className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700 hover:border-cred-accent/50 transition-all duration-200 group"
+              className="bg-white p-4 rounded-xl border-2 border-cred-brown/20 hover:border-cred-orange/50 transition-all duration-200 group"
             >
               {/* Header */}
               <div className="flex justify-between items-start mb-3">
                 <div>
-                  <h4 className="text-white font-bold text-sm">{loan.name}</h4>
-                  <p className="text-gray-500 text-[10px] mt-0.5">{loan.type}</p>
+                  <h4 className="text-cred-brown-dark font-bold text-sm">{loan.name}</h4>
+                  <p className="text-cred-brown text-[10px] mt-0.5">{loan.type}</p>
                 </div>
                 <button
                   onClick={() => deleteLoan(loan.id)}
@@ -104,31 +104,31 @@ const SavedLoans = ({ formatCurrency, onLoadLoan }) => {
               </div>
 
               {/* EMI Display */}
-              <div className="bg-cred-darker/50 p-3 rounded-lg mb-3">
-                <p className="text-gray-400 text-[10px] uppercase tracking-wide mb-1">Monthly EMI</p>
-                <p className="text-cred-accent text-2xl font-bold">{formatCurrency(emi)}</p>
+              <div className="bg-cred-tan p-3 rounded-lg mb-3">
+                <p className="text-cred-brown text-[10px] uppercase tracking-wide mb-1">Monthly EMI</p>
+                <p className="text-cred-orange text-2xl font-bold">{formatCurrency(emi)}</p>
               </div>
 
               {/* Details */}
               <div className="grid grid-cols-3 gap-2 text-xs mb-3">
                 <div>
-                  <p className="text-gray-400 text-[10px]">Amount</p>
-                  <p className="text-white font-semibold">{formatCurrency(loan.loanAmount)}</p>
+                  <p className="text-cred-brown text-[10px]">Amount</p>
+                  <p className="text-cred-brown-dark font-semibold">{formatCurrency(loan.loanAmount)}</p>
                 </div>
                 <div>
-                  <p className="text-gray-400 text-[10px]">Tenure</p>
-                  <p className="text-white font-semibold">{loan.tenure}m</p>
+                  <p className="text-cred-brown text-[10px]">Tenure</p>
+                  <p className="text-cred-brown-dark font-semibold">{loan.tenure}m</p>
                 </div>
                 <div>
-                  <p className="text-gray-400 text-[10px]">ROI</p>
-                  <p className="text-white font-semibold">{loan.roi}%</p>
+                  <p className="text-cred-brown text-[10px]">ROI</p>
+                  <p className="text-cred-brown-dark font-semibold">{loan.roi}%</p>
                 </div>
               </div>
 
               {/* Load Button */}
               <button
                 onClick={() => onLoadLoan(loan)}
-                className="w-full bg-cred-accent/10 border border-cred-accent/30 text-cred-accent py-2 rounded-lg text-xs font-bold hover:bg-cred-accent/20 transition active:scale-95"
+                className="w-full bg-cred-orange/10 border border-cred-orange/30 text-cred-orange py-2 rounded-lg text-xs font-bold hover:bg-cred-orange/20 transition active:scale-95"
               >
                 Load into Calculator
               </button>
