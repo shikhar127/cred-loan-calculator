@@ -174,24 +174,46 @@ const EligibilityChecker = ({ formatCurrency, onApplyToCalculator }) => {
         <div className="bg-cred-dark/50 p-4 rounded-xl border border-gray-800">
           <label className="text-gray-400 text-xs font-medium uppercase tracking-wide mb-3 block">Credit Score</label>
           <div className="grid grid-cols-2 gap-2">
-            {[
-              { value: 'excellent', label: 'Excellent', color: 'green' },
-              { value: 'good', label: 'Good', color: 'blue' },
-              { value: 'fair', label: 'Fair', color: 'yellow' },
-              { value: 'poor', label: 'Poor', color: 'red' },
-            ].map((option) => (
-              <button
-                key={option.value}
-                onClick={() => setCreditScore(option.value)}
-                className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
-                  creditScore === option.value
-                    ? `bg-${option.color}-500 text-white shadow-lg`
-                    : 'bg-cred-darker text-gray-400 border border-gray-700 hover:border-gray-600'
-                }`}
-              >
-                {option.label}
-              </button>
-            ))}
+            <button
+              onClick={() => setCreditScore('excellent')}
+              className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                creditScore === 'excellent'
+                  ? 'bg-green-500 text-white shadow-lg'
+                  : 'bg-cred-darker text-gray-400 border border-gray-700 hover:border-gray-600'
+              }`}
+            >
+              Excellent
+            </button>
+            <button
+              onClick={() => setCreditScore('good')}
+              className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                creditScore === 'good'
+                  ? 'bg-blue-500 text-white shadow-lg'
+                  : 'bg-cred-darker text-gray-400 border border-gray-700 hover:border-gray-600'
+              }`}
+            >
+              Good
+            </button>
+            <button
+              onClick={() => setCreditScore('fair')}
+              className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                creditScore === 'fair'
+                  ? 'bg-yellow-500 text-black shadow-lg'
+                  : 'bg-cred-darker text-gray-400 border border-gray-700 hover:border-gray-600'
+              }`}
+            >
+              Fair
+            </button>
+            <button
+              onClick={() => setCreditScore('poor')}
+              className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                creditScore === 'poor'
+                  ? 'bg-red-500 text-white shadow-lg'
+                  : 'bg-cred-darker text-gray-400 border border-gray-700 hover:border-gray-600'
+              }`}
+            >
+              Poor
+            </button>
           </div>
         </div>
       </div>
