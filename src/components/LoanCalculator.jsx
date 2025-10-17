@@ -201,20 +201,20 @@ const LoanCalculator = () => {
   }
 
   return (
-    <div className="px-5 py-6 pb-24 space-y-4">
+    <div className="px-4 py-4 pb-20 space-y-3">
       {/* Hero EMI Display - Always Visible */}
       {results && (
-        <div className="bg-gradient-to-br from-cred-accent/20 to-cred-accent-light/10 p-5 rounded-2xl border-2 border-cred-accent/30 shadow-lg">
-          <p className="text-gray-400 text-xs uppercase tracking-wide mb-1">Your Monthly EMI</p>
-          <p className="text-white text-4xl font-extrabold">{formatCurrency(results.emi)}</p>
-          <div className="mt-3 pt-3 border-t border-cred-accent/20 grid grid-cols-2 gap-3 text-xs">
+        <div className="bg-gradient-to-br from-cred-accent/20 to-cred-accent-light/10 p-4 rounded-xl border-2 border-cred-accent/30 shadow-lg">
+          <p className="text-gray-400 text-[10px] uppercase tracking-wide mb-1">Your Monthly EMI</p>
+          <p className="text-white text-3xl font-extrabold">{formatCurrency(results.emi)}</p>
+          <div className="mt-2 pt-2 border-t border-cred-accent/20 grid grid-cols-2 gap-2 text-[10px]">
             <div>
               <p className="text-gray-400">Total Payable</p>
-              <p className="text-white text-base font-bold">{formatCurrency(results.totalAmount)}</p>
+              <p className="text-white text-sm font-bold">{formatCurrency(results.totalAmount)}</p>
             </div>
             <div>
               <p className="text-gray-400">Interest</p>
-              <p className="text-cred-accent-light text-base font-bold">{formatCurrency(results.totalInterest)}</p>
+              <p className="text-cred-accent-light text-sm font-bold">{formatCurrency(results.totalInterest)}</p>
             </div>
           </div>
         </div>
@@ -224,23 +224,23 @@ const LoanCalculator = () => {
       <div className="flex gap-2">
         <button
           onClick={() => setShowSaveModal(true)}
-          className="flex-1 bg-cred-darker border-2 border-cred-accent/30 text-cred-accent py-3 rounded-xl font-bold hover:bg-cred-accent/10 transition active:scale-95 flex items-center justify-center gap-2"
+          className="flex-1 bg-cred-darker border-2 border-cred-accent/30 text-cred-accent py-2 rounded-xl text-sm font-bold hover:bg-cred-accent/10 transition active:scale-95 flex items-center justify-center gap-1.5"
         >
-          <Save className="w-5 h-5" />
+          <Save className="w-4 h-4" />
           Save
         </button>
         <button
           onClick={shareAsLink}
-          className="flex-1 bg-cred-darker border-2 border-cred-accent/30 text-cred-accent py-3 rounded-xl font-bold hover:bg-cred-accent/10 transition active:scale-95 flex items-center justify-center gap-2"
+          className="flex-1 bg-cred-darker border-2 border-cred-accent/30 text-cred-accent py-2 rounded-xl text-sm font-bold hover:bg-cred-accent/10 transition active:scale-95 flex items-center justify-center gap-1.5"
         >
-          <Share className="w-5 h-5" />
+          <Share className="w-4 h-4" />
           Share
         </button>
         <button
           onClick={exportAsImage}
-          className="bg-cred-darker border-2 border-cred-accent/30 text-cred-accent p-3 rounded-xl hover:bg-cred-accent/10 transition active:scale-95"
+          className="bg-cred-darker border-2 border-cred-accent/30 text-cred-accent p-2 rounded-xl hover:bg-cred-accent/10 transition active:scale-95"
         >
-          <Download className="w-5 h-5" />
+          <Download className="w-4 h-4" />
         </button>
       </div>
 

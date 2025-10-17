@@ -4,11 +4,11 @@ const ChartsSection = ({ results, formatCurrency }) => {
   if (!results) return null
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {/* Pie Chart */}
-      <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
-        <h3 className="text-white text-xs font-semibold mb-3 uppercase tracking-wide">Payment Breakdown</h3>
-        <ResponsiveContainer width="100%" height={200}>
+      <div className="bg-cred-darker p-3 rounded-xl border-2 border-gray-700">
+        <h3 className="text-white text-[10px] font-semibold mb-2 uppercase tracking-wide">Payment Breakdown</h3>
+        <ResponsiveContainer width="100%" height={160}>
           <PieChart>
             <Pie
               data={[
@@ -31,25 +31,25 @@ const ChartsSection = ({ results, formatCurrency }) => {
             />
           </PieChart>
         </ResponsiveContainer>
-        <div className="flex justify-center gap-6 mt-3">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-cred-accent rounded"></div>
-            <span className="text-gray-400 text-xs">Principal</span>
+        <div className="flex justify-center gap-4 mt-2">
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 bg-cred-accent rounded"></div>
+            <span className="text-gray-400 text-[10px]">Principal</span>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-pink-400 rounded"></div>
-            <span className="text-gray-400 text-xs">Interest</span>
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 bg-pink-400 rounded"></div>
+            <span className="text-gray-400 text-[10px]">Interest</span>
           </div>
         </div>
       </div>
 
       {/* Line Chart */}
       {results.chartData && results.chartData.length > 0 && (
-        <div className="bg-cred-darker p-4 rounded-xl border-2 border-gray-700">
-          <h3 className="text-white text-xs font-semibold mb-3 uppercase tracking-wide">
+        <div className="bg-cred-darker p-3 rounded-xl border-2 border-gray-700">
+          <h3 className="text-white text-[10px] font-semibold mb-2 uppercase tracking-wide">
             Principal vs Interest Trend
           </h3>
-          <ResponsiveContainer width="100%" height={180}>
+          <ResponsiveContainer width="100%" height={150}>
             <LineChart data={results.chartData}>
               <XAxis dataKey="month" stroke="#6b7280" style={{ fontSize: '10px' }} />
               <YAxis stroke="#6b7280" style={{ fontSize: '10px' }} />
