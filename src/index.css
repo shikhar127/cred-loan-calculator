@@ -28,7 +28,7 @@ html {
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  background-color: #f5f0e8;
+  background-color: #ffffff;
   min-height: 100vh;
   min-height: -webkit-fill-available;
   -webkit-font-smoothing: antialiased;
@@ -54,7 +54,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #f5f0e8;
+    background-color: #ffffff;
   }
 }
 
@@ -125,7 +125,7 @@ input[type="range"]::-moz-range-thumb:active {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f5f0e8;
+  background: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {
