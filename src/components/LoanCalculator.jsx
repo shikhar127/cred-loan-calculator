@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { toPng } from 'html-to-image'
 import { Download, Share, Save, Settings, Chart, Calendar, CheckCircle, Compare } from './Icons'
-import { useDebouncedValue } from '../hooks/useDebouncedValue'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import CollapsibleSection from './CollapsibleSection'
 import LoanInputs from './LoanInputs'
@@ -23,15 +22,10 @@ const LoanCalculator = () => {
   const [loanType, setLoanType] = useState('Personal')
   const exportRef = useRef(null)
 
-  // Debounced values for real-time calculation
-  const debouncedLoanAmount = useDebouncedValue(loanAmount, 300)
-  const debouncedTenure = useDebouncedValue(tenure, 300)
-  const debouncedRoi = useDebouncedValue(roi, 300)
-
-  // Auto-calculate on load and when values change
+  // Instant calculation - no debouncing for maximum snappiness!
   useEffect(() => {
     calculateEMI()
-  }, [debouncedLoanAmount, debouncedTenure, tenureType, debouncedRoi])
+  }, [loanAmount, tenure, tenureType, roi])
 
   // Parse URL parameters for shared loans
   useEffect(() => {

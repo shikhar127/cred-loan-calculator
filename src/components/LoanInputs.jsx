@@ -42,11 +42,17 @@ const LoanInputs = ({
       {/* Loan Amount */}
       <div className="bg-cred-darker p-3 rounded-xl border-2 border-gray-700">
         <label className="text-gray-400 text-[10px] font-medium uppercase tracking-wide">Loan Amount</label>
-        <div className="flex items-baseline gap-1.5 mt-1.5 mb-1">
+        <div className="flex items-center gap-2 mt-1.5 mb-2">
           <span className="text-cred-accent text-lg font-bold">₹</span>
-          <div className="text-white text-2xl font-bold tracking-tight">
-            {formatNumber(loanAmount)}
-          </div>
+          <input
+            type="number"
+            min="10000"
+            max="10000000"
+            step="10000"
+            value={loanAmount}
+            onChange={(e) => setLoanAmount(Number(e.target.value) || 0)}
+            className="flex-1 bg-cred-dark border-2 border-gray-700 text-white text-xl font-bold px-3 py-2 rounded-lg outline-none focus:border-cred-accent transition"
+          />
         </div>
         <input
           type="range"
@@ -66,14 +72,19 @@ const LoanInputs = ({
       {/* Tenure */}
       <div className="bg-cred-darker p-3 rounded-xl border-2 border-gray-700">
         <label className="text-gray-400 text-[10px] font-medium uppercase tracking-wide">Tenure</label>
-        <div className="flex items-center gap-2 mt-1.5 mb-1">
-          <div className="text-white text-2xl font-bold tracking-tight">
-            {tenure}
-          </div>
+        <div className="flex items-center gap-2 mt-1.5 mb-2">
+          <input
+            type="number"
+            min="1"
+            max={tenureType === 'years' ? 30 : 360}
+            value={tenure}
+            onChange={(e) => setTenure(Number(e.target.value) || 1)}
+            className="flex-1 bg-cred-dark border-2 border-gray-700 text-white text-xl font-bold px-3 py-2 rounded-lg outline-none focus:border-cred-accent transition"
+          />
           <select
             value={tenureType}
             onChange={(e) => setTenureType(e.target.value)}
-            className="bg-cred-darker text-cred-accent px-2 py-1 rounded-lg outline-none text-sm font-semibold border-2 border-cred-accent/20"
+            className="bg-cred-dark text-cred-accent px-3 py-2 rounded-lg outline-none text-sm font-semibold border-2 border-gray-700 focus:border-cred-accent"
           >
             <option value="months">Months</option>
             <option value="years">Years</option>
@@ -96,10 +107,16 @@ const LoanInputs = ({
       {/* ROI */}
       <div className="bg-cred-darker p-3 rounded-xl border-2 border-gray-700">
         <label className="text-gray-400 text-[10px] font-medium uppercase tracking-wide">Interest Rate (p.a.)</label>
-        <div className="flex items-baseline gap-1.5 mt-1.5 mb-1">
-          <div className="text-white text-2xl font-bold tracking-tight">
-            {roi}
-          </div>
+        <div className="flex items-center gap-2 mt-1.5 mb-2">
+          <input
+            type="number"
+            min="0"
+            max="30"
+            step="0.5"
+            value={roi}
+            onChange={(e) => setRoi(Number(e.target.value) || 0)}
+            className="flex-1 bg-cred-dark border-2 border-gray-700 text-white text-xl font-bold px-3 py-2 rounded-lg outline-none focus:border-cred-accent transition"
+          />
           <span className="text-cred-accent text-lg font-bold">%</span>
         </div>
         <input
