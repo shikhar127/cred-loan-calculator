@@ -68,6 +68,14 @@ input[type="range"] {
   appearance: none;
   background: transparent;
   cursor: pointer;
+  /* Prevent keyboard from opening on mobile */
+  pointer-events: auto;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+input[type="range"]:focus {
+  outline: none;
 }
 
 input[type="range"]::-webkit-slider-track {

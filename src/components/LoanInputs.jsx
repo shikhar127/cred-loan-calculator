@@ -62,6 +62,7 @@ const LoanInputs = ({
           value={loanAmount}
           onChange={(e) => setLoanAmount(Number(e.target.value))}
           className="w-full mt-2"
+          inputMode="none"
         />
         <div className="flex justify-between text-[10px] font-medium text-gray-500 mt-1.5">
           <span>₹10K</span>
@@ -97,6 +98,7 @@ const LoanInputs = ({
           value={tenure}
           onChange={(e) => setTenure(Number(e.target.value))}
           className="w-full mt-2"
+          inputMode="none"
         />
         <div className="flex justify-between text-[10px] font-medium text-gray-500 mt-1.5">
           <span>1 {tenureType === 'years' ? 'Yr' : 'Mo'}</span>
@@ -127,6 +129,7 @@ const LoanInputs = ({
           value={roi}
           onChange={(e) => setRoi(Number(e.target.value))}
           className="w-full mt-2"
+          inputMode="none"
         />
         <div className="flex justify-between text-[10px] font-medium text-gray-500 mt-1.5">
           <span>0%</span>
