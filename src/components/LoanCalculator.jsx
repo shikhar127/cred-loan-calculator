@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react'
-import { toPng } from 'html-to-image'
 import { Download, Share, Save, Settings, Chart, Calendar, CheckCircle, Compare } from './Icons'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import CollapsibleSection from './CollapsibleSection'
@@ -103,6 +102,8 @@ const LoanCalculator = () => {
   const exportAsImage = async () => {
     if (exportRef.current) {
       try {
+        // Lazy load html-to-image only when needed
+        const { toPng } = await import('html-to-image')
         const dataUrl = await toPng(exportRef.current, { quality: 0.95 })
         const link = document.createElement('a')
         link.download = 'loan-details.png'
